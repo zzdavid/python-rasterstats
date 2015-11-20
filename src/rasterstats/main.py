@@ -208,6 +208,9 @@ def zonal_stats(vectors,
 
             if add_stats is not None:
                 for stat_name, stat_func in add_stats.items():
+                    try:
+                        feature_stats[stat_name] = stat_func(masked, fsrc)
+                    except TypeError:
                         feature_stats[stat_name] = stat_func(masked)
 
             if raster_out:
